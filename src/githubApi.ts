@@ -34,7 +34,12 @@ function token(): string | undefined {
 }
 
 export class GitHubError extends Error {
-    constructor(public status: number, message: string) { super(message); }
+    readonly status: number;
+
+    constructor(status: number, message: string) {
+        super(message);
+        this.status = status;
+    }
 }
 
 // Preview-only diagnostics. The Action's fetchers above deliberately swallow
