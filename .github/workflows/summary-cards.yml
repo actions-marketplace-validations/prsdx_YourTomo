@@ -19,7 +19,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          USERNAME: prsdx
+          # Keep the workflow aligned with the account that owns this repo.
+          # The old hard-coded login was renamed, so the summary-card action
+          # could no longer find the profile and every scheduled run failed.
+          USERNAME: ${{ github.repository_owner }}
           UTC_OFFSET: 5.5
 
       - name: Prune extra themes and commit if needed
