@@ -14,6 +14,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version-file: .bun-version
       # tokenless on purpose: exercises the fallback path external contributors hit
       - name: Generate without token
         run: bun generate.ts
@@ -28,4 +30,4 @@ jobs:
             grep -q '<svg' "$file" || { echo "not an svg: $file"; exit 1; }
             grep -q '</svg>' "$file" || { echo "truncated svg: $file"; exit 1; }
           done
-          echo "all 8 SVGs OK"
+          echo "all 9 SVGs OK"

@@ -146,6 +146,46 @@ milestones** rains confetti (via a tiny committed `state.json` memory).
 - 🐛 **Bugs:** [Issues](../../issues) - templates included, logs appreciated
 - If the cat made you smile, a ⭐ tells other people it exists.
 
+## Local development
+
+This repository pins Node in `.nvmrc` and Bun in `.bun-version`. The generator
+has no runtime dependencies; the preview worker has its own lockfile under
+`preview/`.
+
+```bash
+nvm install
+nvm use
+npm ci
+make test
+```
+
+To render the SVGs locally, provide a username and an output directory. The
+GitHub API calls are read-only; leave `GITHUB_TOKEN` unset to use the public
+rate limit.
+
+```bash
+PET_USER=octocat PET_OUTPUT_DIR=dist node generate.ts
+```
+
+To run the preview worker:
+
+```bash
+cd preview
+npm ci
+npm run dev
+```
+
+For a production preview deployment, authenticate Wrangler and run:
+
+```bash
+cd preview
+npx wrangler login
+npm run deploy
+```
+
+The same generator can be built and run in Docker with `docker build -t yourtomo .`
+and `docker run --rm -e PET_USER=octocat yourtomo`.
+
 ---
 
 Zero runtime dependencies, TypeScript, built by hand — pixel grids, state

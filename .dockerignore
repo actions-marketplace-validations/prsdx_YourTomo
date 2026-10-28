@@ -1,0 +1,13 @@
+.git
+.github
+.claude
+.graphify-venv
+graphify-out
+node_modules
+preview/node_modules
+dist
+profile-summary-card-output
+*.log
+.env
+.env.*
+!.env.example
